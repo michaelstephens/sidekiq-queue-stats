@@ -7,8 +7,9 @@ module Sidekiq
 
         app.get "/worker_stats" do
           @queues = Sidekiq::Queue.all.map(&:name)
+          @queue  = params[:queue] ? Sidekiq::Queue.new(params[:queue]) : Sidekiq::Queue.new
           @workers = {}
-            Sidekiq::Queue.all.each do |q|
+            @queue.each do |q|
               @workers[q.name] = {}
               total = q.map{|cue| cue.klass}
               klasses = total.uniq
