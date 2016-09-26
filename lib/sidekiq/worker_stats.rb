@@ -6,7 +6,6 @@ end
 
 require "sidekiq/api"
 require "sidekiq/worker_stats/version"
-require "sidekiq/worker_stats/middleware"
 require "sidekiq/worker_stats/web_extension"
 
 module Sidekiq
