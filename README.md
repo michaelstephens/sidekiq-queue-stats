@@ -17,7 +17,7 @@ gem 'sidekiq-worker-stats'
 Simply having the gem in your Gemfile is enough to get you started. Your
 job count will be visible via a Worker Stats tab in the Web UI.
 
-![Web UI](http://i.imgur.com/aCPB1YS.png)
+![Web UI](http://i.imgur.com/1rlIcJW.png)
 ## Dependencies
 
 Depends on Sidekiq >= 2.16.0
