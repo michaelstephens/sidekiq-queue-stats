@@ -1,1 +1,1 @@
-require "sidekiq/worker_count"
+require "sidekiq/worker_stats"

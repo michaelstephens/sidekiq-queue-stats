@@ -5,14 +5,14 @@ rescue LoadError
 end
 
 require "sidekiq/api"
-require "sidekiq/worker_count/version"
-require "sidekiq/worker_count/middleware"
-require "sidekiq/worker_count/web_extension"
+require "sidekiq/worker_stats/version"
+require "sidekiq/worker_stats/middleware"
+require "sidekiq/worker_stats/web_extension"
 
 module Sidekiq
 end
 
 if defined?(Sidekiq::Web)
   Sidekiq::Web.register Sidekiq::WorkerStats::WebExtension
-  Sidekiq::Web.tabs["Worker Count"] = "worker_count"
+  Sidekiq::Web.tabs["Worker Stats"] = "worker_stats"
 end

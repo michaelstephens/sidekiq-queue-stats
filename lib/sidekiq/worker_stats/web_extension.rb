@@ -1,5 +1,5 @@
 module Sidekiq
-  module WorkerCount
+  module WorkerStats
     module WebExtension
 
       def self.registered(app)
@@ -17,7 +17,7 @@ module Sidekiq
           end
         end
 
-        app.get "/worker_count" do
+        app.get "/worker_stats" do
           @queues = Sidekiq::Queue.all.map(&:name)
           @workers = {}
             Sidekiq::Queue.all.each do |q|
@@ -29,7 +29,7 @@ module Sidekiq
               end
             end
 
-          render(:erb, File.read(File.join(view_path, "worker_count.erb")))
+          render(:erb, File.read(File.join(view_path, "worker_stats.erb")))
         end
       end
     end

@@ -1,5 +1,5 @@
 module Sidekiq
-  module Failures
+  module WorkerStats
 
     class Middleware
       attr_accessor :msg
