@@ -21,6 +21,7 @@ module QueueStats
           else
             @queue = params[:queue] ? Sidekiq::Queue.new(params[:queue]) : Sidekiq::Queue.new
             @workers[@queue.name] = {}
+
             total = @queue.map{|cue| cue.klass}
             klasses = total.uniq
             if klasses
