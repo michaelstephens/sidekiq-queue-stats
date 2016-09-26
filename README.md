@@ -1,4 +1,4 @@
-# Sidekiq::WorkerStats [![Build Status](https://secure.travis-ci.org/mhfs/sidekiq-worker-count.png)](http://travis-ci.org/mhfs/sidekiq-worker-count)
+# Sidekiq::WorkerStats [![Build Status](https://secure.travis-ci.org/mikestephens/sidekiq-worker-count.png)](http://travis-ci.org/mikestephens/sidekiq-worker-count)
 
 Keeps track of Sidekiq job count and adds a tab to the Web UI to let you view totals.
 
