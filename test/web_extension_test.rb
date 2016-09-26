@@ -14,17 +14,17 @@ module Sidekiq
       Sidekiq.redis {|c| c.flushdb }
     end
 
-    it 'can display home with worker stats tab' do
+    it 'can display home with queue stats tab' do
       get '/'
       last_response.status.must_equal 200
       last_response.body.must_match /Sidekiq/
-      last_response.body.must_match /Worker Stats/
+      last_response.body.must_match /Queue Stats/
     end
 
-    it 'can display worker stats page without any failures' do
-      get '/worker_stats'
+    it 'can display queue stats page without any failures' do
+      get '/queue_stats'
       last_response.status.must_equal 200
-      last_response.body.must_match /Worker Stats/
+      last_response.body.must_match /Queue Stats/
       last_response.body.must_match /Default/
     end
   end

@@ -1,4 +1,4 @@
-# Sidekiq::WorkerStats [![Build Status](https://travis-ci.org/mikestephens/sidekiq-worker-stats.svg?branch=master)](https://travis-ci.org/mikestephens/sidekiq-worker-stats)
+# Sidekiq::QueueStats [![Build Status](https://travis-ci.org/mikestephens/sidekiq-queue-stats.svg?branch=master)](https://travis-ci.org/mikestephens/sidekiq-queue-stats)
 
 Keeps track of Sidekiq job count and adds a tab to the Web UI to let you view totals.
 
@@ -9,7 +9,7 @@ Keeps track of Sidekiq job count and adds a tab to the Web UI to let you view to
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'sidekiq-worker-stats'
+gem 'sidekiq-queue-stats'
 ```
 
 ## Usage
@@ -34,4 +34,4 @@ Depends on Sidekiq >= 2.16.0
 
 Released under the MIT License. See the [LICENSE][license] file for further details.
 
-[license]: https://github.com/mhfs/sidekiq-worker-count/blob/master/LICENSE
+[license]: https://github.com/mhfs/sidekiq-queue-count/blob/master/LICENSE

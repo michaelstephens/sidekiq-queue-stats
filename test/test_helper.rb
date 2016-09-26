@@ -4,7 +4,7 @@ require "minitest/mock"
 require "rack/test"
 
 require "sidekiq"
-require "sidekiq-worker-stats"
+require "sidekiq-queue-stats"
 require "sidekiq/processor"
 require "sidekiq/fetch"
 require "sidekiq/cli"
