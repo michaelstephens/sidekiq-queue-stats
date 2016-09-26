@@ -30,7 +30,7 @@ module QueueStats
             end
           end
 
-          render(:erb, File.read(File.join(view_path, "worker_stats.erb")))
+          render(:erb, File.read(File.join(view_path, "queue_stats.erb")))
         end
       end
     end
