@@ -7,7 +7,6 @@ module Sidekiq
 
         app.get "/worker_stats" do
           @queues = Sidekiq::Queue.all.map(&:name)
-          @queue  = params[:queue] ? Sidekiq::Queue.new(params[:queue]) : Sidekiq::Queue.new
           @workers = {}
 
           if params[:queue] == "all"
@@ -20,12 +19,13 @@ module Sidekiq
               end
             end
           else
-            @queue.each do |q|
-              @workers[q.name] = {}
-              total = q.map{|cue| cue.klass}
-              klasses = total.uniq
+            @queue = params[:queue] ? Sidekiq::Queue.new(params[:queue]) : Sidekiq::Queue.new
+            @workers[@queue.name] = {}
+            total = @queue.map{|cue| cue.klass}
+            klasses = total.uniq
+            if klasses
               klasses.each do |klass|
-                @workers[q.name][klass] = total.count(klass)
+                @workers[@queue.name][klass] = total.count(klass)
               end
             end
           end

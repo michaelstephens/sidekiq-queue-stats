@@ -5,3 +5,4 @@ gemspec
 
 gem 'sidekiq', ENV['SIDEKIQ_VERSION'] if ENV['SIDEKIQ_VERSION']
 gem 'minitest'
+gem 'pry'
