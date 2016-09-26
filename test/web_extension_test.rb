@@ -16,7 +16,6 @@ module Sidekiq
 
     it 'can display home with worker stats tab' do
       get '/'
-
       last_response.status.must_equal 200
       last_response.body.must_match /Sidekiq/
       last_response.body.must_match /Worker Stats/
