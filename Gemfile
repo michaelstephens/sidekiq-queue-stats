@@ -4,5 +4,6 @@ source 'https://rubygems.org'
 gemspec
 
 gem 'sidekiq', ENV['SIDEKIQ_VERSION'] if ENV['SIDEKIQ_VERSION']
-gem 'minitest'
-gem 'pry'
+gem 'minitest', :groups => [:development, :test]
+gem 'pry', :groups => [:development, :test]
+gem 'dotenv-rails', :groups => [:development, :test]

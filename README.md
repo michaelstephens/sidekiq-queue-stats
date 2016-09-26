@@ -15,7 +15,7 @@ gem 'sidekiq-queue-stats'
 ## Usage
 
 Simply having the gem in your Gemfile is enough to get you started. Your
-job count will be visible via a Worker Stats tab in the Web UI.
+job count will be visible via a Queue Stats tab in the Web UI.
 
 ![Web UI](http://i.imgur.com/eSNVK0O.png)
 ## Dependencies

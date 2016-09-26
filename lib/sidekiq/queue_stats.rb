@@ -13,5 +13,5 @@ end
 
 if defined?(Sidekiq::Web)
   Sidekiq::Web.register Sidekiq::QueueStats::WebExtension
-  Sidekiq::Web.tabs["Worker Stats"] = "queue_stats"
+  Sidekiq::Web.tabs["Queue Stats"] = "queue_stats"
 end
