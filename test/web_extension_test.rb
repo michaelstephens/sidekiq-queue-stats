@@ -11,7 +11,6 @@ module Sidekiq
 
     before do
       Sidekiq.redis = REDIS
-      Sidekiq.redis {|c| c.flushdb }
     end
 
     it 'can display home with queue stats tab' do
@@ -25,7 +24,7 @@ module Sidekiq
       get '/queue_stats'
       last_response.status.must_equal 200
       last_response.body.must_match /Queue Stats/
-      last_response.body.must_match /Nothing waiting in any queue/
+      last_response.body.must_match /Default/
     end
   end
 end

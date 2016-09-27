@@ -6,20 +6,21 @@ module QueueStats
         view_path = File.join(File.expand_path("..", __FILE__), "views")
 
         app.get "/queue_stats" do
-          @qs = Sidekiq::Queue.all.map(&:name)
-          @wrks = {}
+          @queues_list = Sidekiq::Queue.all.map(&:name)
+          @workers_count = {}
 
-          if params[:queue]
-            @q = params[:queue] ? Sidekiq::Queue.new(params[:queue]) : Sidekiq::Queue.new
-            @wrks[@q.name] = Hash.new(0)
-            @q.each do |job|
-              @wrks[@q.name][job.klass] += 1
+          if params[:selected_queue]
+            @selected_queue = params[:selected_queue] ? Sidekiq::Queue.new(params[:selected_queue]) : Sidekiq::Queue.new
+            @workers_count[@selected_queue.name] = Hash.new(0)
+            @selected_queue.each do |job|
+              @workers_count[@selected_queue.name][job.klass] += 1
             end
           else
-            Sidekiq::Queue.all.each do |q|
-              @wrks[q.name] = Hash.new(0)
+            queues_list = Sidekiq::Queue.all
+            queues_list.each do |q|
+              @workers_count[q.name] = Hash.new(0)
               q.each do |job|
-                @wrks[q.name][job.klass] += 1
+                @workers_count[q.name][job.klass] += 1
               end
             end
           end

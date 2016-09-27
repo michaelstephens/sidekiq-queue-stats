@@ -9,8 +9,8 @@
     </button>
     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
       <li><a href="?">All</a></li>
-      <% @qs.each do |q| %>
-        <li><a href=<%="?queue=#{q.downcase}"%>><%= q.capitalize %></a></li>
+      <% @queues_list.each do |q| %>
+        <li><a href=<%="?selected_queue=#{q.downcase}"%>><%= q.capitalize %></a></li>
       <% end %>
     </ul>
   </div>
@@ -19,9 +19,9 @@
 
 
 <%= csrf_tag if respond_to?(:csrf_tag) %>
-<% if params[:queue] %>
-  <h4><%= @q.name.capitalize %></h4>
-  <% if @wrks[@q.name].empty? %>
+<% if params[:selected_queue] %>
+  <h4><%= @selected_queue.name.capitalize %></h4>
+  <% if @workers_count[@selected_queue.name].empty? %>
     <div class="alert alert-success">Nothing waiting in queue</div>
   <% else %>
     <table class="table table-striped table-bordered table-white">
@@ -31,7 +31,7 @@
           <th style="width: 150px">Count</th>
         </tr>
       </thead>
-      <% @wrks[@q.name].each do |worker| %>
+      <% @workers_count[@selected_queue.name].each do |worker| %>
         <tr>
           <td><%=worker.first%></td>
           <td><%=worker.last%></td>
@@ -40,12 +40,12 @@
     </table>
   <% end %>
 <% else %>
-  <% if @qs.empty? %>
+  <% if @queues_list.empty? %>
     <div class="alert alert-success">Nothing waiting in any queue</div>
   <% else %>
-    <% @qs.each do |q| %>
+    <% @queues_list.each do |q| %>
       <h4><%= q.capitalize %></h4>
-      <% if @wrks[q].empty? %>
+      <% if @workers_count[q].empty? %>
        <div class="alert alert-success">Nothing waiting in queue</div>
       <% else %>
        <table class="table table-striped table-bordered table-white">
@@ -55,7 +55,7 @@
              <th style="width: 150px">Count</th>
            </tr>
          </thead>
-         <% @wrks[q].each do |worker| %>
+         <% @workers_count[q].each do |worker| %>
            <tr>
              <td><%=worker.first%></td>
              <td><%=worker.last%></td>

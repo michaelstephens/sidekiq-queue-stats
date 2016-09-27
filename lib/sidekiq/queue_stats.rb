@@ -9,6 +9,8 @@ require "sidekiq/queue_stats/version"
 require "sidekiq/queue_stats/web_extension"
 
 module Sidekiq
+  module QueueStats
+  end
 end
 
 if defined?(Sidekiq::Web)
