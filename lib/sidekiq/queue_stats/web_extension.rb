@@ -9,24 +9,17 @@ module QueueStats
           @queues = Sidekiq::Queue.all.map(&:name)
           @workers = {}
 
-          if params[:queue] == "all"
-            Sidekiq::Queue.all.each do |q|
-              @workers[q.name] = {}
-              total = q.map{|cue| cue.klass}
-              klasses = total.uniq
-              klasses.each do |klass|
-                @workers[q.name][klass] = total.count(klass)
-              end
+          if params[:queue]
+            @queue = params[:queue] ? Sidekiq::Queue.new(params[:queue]) : Sidekiq::Queue.new
+            @workers[@queue.name] = Hash.new(0)
+            @queue.each do |job|
+              @workers[@queue.name][job.klass] += 1
             end
           else
-            @queue = params[:queue] ? Sidekiq::Queue.new(params[:queue]) : Sidekiq::Queue.new
-            @workers[@queue.name] = {}
-
-            total = @queue.map{|cue| cue.klass}
-            klasses = total.uniq
-            if klasses
-              klasses.each do |klass|
-                @workers[@queue.name][klass] = total.count(klass)
+            Sidekiq::Queue.all.each do |q|
+              @workers[q.name] = Hash.new(0)
+              q.each do |job|
+                @workers[q.name][job.klass] += 1
               end
             end
           end
