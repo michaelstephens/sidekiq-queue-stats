@@ -25,7 +25,7 @@ module Sidekiq
       get '/queue_stats'
       last_response.status.must_equal 200
       last_response.body.must_match /Queue Stats/
-      last_response.body.must_match /Nothing waiting in any queue/
+      last_response.body.must_match /Default/
     end
   end
 end
