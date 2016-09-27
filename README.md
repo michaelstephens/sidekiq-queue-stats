@@ -2,8 +2,6 @@
 
 Keeps track of Sidekiq job count and adds a tab to the Web UI to let you view totals.
 
-[WARNING] Large amounts of jobs in queues can cause this gem to slowly load. Use the 'Live Poll' button at your own risk.
-
 ## Installation
 
 Add this line to your application's Gemfile:
