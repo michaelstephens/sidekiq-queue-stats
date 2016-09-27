@@ -1,21 +1,22 @@
 <header class="row">
-  <div class="col-sm-5">
+  <div class="col-sm-10">
     <h3>Queue Stats</h3>
+  </div>
+  <div class="dropdown col-sm-2">
+    <button class="btn btn-default dropdown-toggle pull-right" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+      Queues
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+      <li><a href="?">All</a></li>
+      <% @queues.each do |q| %>
+        <li><a href=<%="?queue=#{q.downcase}"%>><%= q.capitalize %></a></li>
+      <% end %>
+    </ul>
   </div>
 </header>
 
-<div class="dropdown pull-right">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    Queues
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="?">All</a></li>
-    <% @queues.each do |q| %>
-      <li><a href=<%="?queue=#{q.downcase}"%>><%= q.capitalize %></a></li>
-    <% end %>
-  </ul>
-</div>
+
 
 <%= csrf_tag if respond_to?(:csrf_tag) %>
 <% if params[:queue] %>
