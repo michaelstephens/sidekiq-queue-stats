@@ -16,6 +16,21 @@ Simply having the gem in your Gemfile is enough to get you started. Your
 job count will be visible via a Queue Stats tab in the Web UI.
 
 ![Web UI](http://i.imgur.com/eSNVK0O.png)
+
+### Configuration
+
+Add this block to `config/initializers/sidekiq.rb`
+
+```
+Sidekiq::QueueStats.configure do |config|
+  config.max_limit = 50000
+end
+```
+
+#### Max Limit
+
+Iterating through large queues can be resource intensive and take quite a lot of time. This option lets you set an integer to only show queue stats of queues under a pre defined threashold.
+
 ## Dependencies
 
 Depends on Sidekiq >= 2.16.0

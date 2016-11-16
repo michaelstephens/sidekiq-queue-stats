@@ -7,6 +7,7 @@ end
 require "sidekiq/api"
 require "sidekiq/queue_stats/version"
 require "sidekiq/queue_stats/web_extension"
+require "sidekiq/queue_stats/configuration"
 
 module Sidekiq
   module QueueStats

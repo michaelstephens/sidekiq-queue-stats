@@ -34,7 +34,7 @@
       <% @workers_count[@selected_queue.name].each do |worker| %>
         <tr>
           <td><%=worker.first%></td>
-          <td><%=worker.last%></td>
+          <td><%=number_with_delimiter(worker.last)%></td>
         </tr>
       <% end %>
     </table>
@@ -47,6 +47,8 @@
       <h4><%= q.capitalize %></h4>
       <% if @workers_count[q].empty? %>
        <div class="alert alert-success">Nothing waiting in queue</div>
+      <% elsif @workers_count[q] == "too_big" %>
+        <div class="alert alert-warning">Queue too large to display. Manually select it to see what is in it.</div>
       <% else %>
        <table class="table table-striped table-bordered table-white">
          <thead>
@@ -58,7 +60,7 @@
          <% @workers_count[q].each do |worker| %>
            <tr>
              <td><%=worker.first%></td>
-             <td><%=worker.last%></td>
+             <td><%=number_with_delimiter(worker.last)%></td>
            </tr>
          <% end %>
        </table>

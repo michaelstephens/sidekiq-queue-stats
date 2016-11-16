@@ -18,9 +18,13 @@ module QueueStats
           else
             queues_list = Sidekiq::Queue.all
             queues_list.each do |q|
-              @workers_count[q.name] = Hash.new(0)
-              q.each do |job|
-                @workers_count[q.name][job.klass] += 1
+              if !Sidekiq::QueueStats.configuration.max_limit.nil? && q.size > Sidekiq::QueueStats.configuration.max_limit
+                @workers_count[q.name] = "too_big"
+              else
+                @workers_count[q.name] = Hash.new(0)
+                q.each do |job|
+                  @workers_count[q.name][job.klass] += 1
+                end
               end
             end
           end
